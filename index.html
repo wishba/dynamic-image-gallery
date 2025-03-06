@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+  img {
+    max-width: 5rem;
+  }
+
+  #image-container {
+    display: flex;
+    align-items: start;
+  }
+</style>
+
+<body>
+  <div id="image-container"></div>
+
+  <script>
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('image-container')
+        data.forEach(image => {
+          const img = document.createElement('img')
+          img.src = `images/${image.url}`
+          container.appendChild(img)
+        })
+      })
+  </script>
+</body>
+
+</html>
