@@ -4,34 +4,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Image Catalog</title>
 </head>
 
 <style>
   img {
-    max-width: 5rem;
+    width: calc((100vw / 3) - 2rem);
+    max-width: 20rem;
+    height: auto;
   }
 
-  #image-container {
+  .image-container {
     display: flex;
+    flex-wrap: wrap;
     align-items: start;
+    flex-direction: column;
+  }
+
+  .container-wrapper {
+    display: flex;
+    width: fit-content;
+    margin: auto;
   }
 </style>
 
 <body>
-  <div id="image-container"></div>
+  <div class="container-wrapper">
+    <div id="image-container-1" class="image-container"></div>
+    <div id="image-container-2" class="image-container"></div>
+    <div id="image-container-3" class="image-container"></div>
+  </div>
 
   <script>
     fetch('data.json')
       .then(response => response.json())
       .then(data => {
-        const container = document.getElementById('image-container')
-        data.forEach(image => {
-          const img = document.createElement('img')
-          img.src = `images/${image.url}`
-          container.appendChild(img)
-        })
+        const containers = [
+          document.getElementById('image-container-1'),
+          document.getElementById('image-container-2'),
+          document.getElementById('image-container-3')
+        ];
+
+        data.forEach((image, index) => {
+          const img = document.createElement('img');
+          img.src = `images/${image.url}`;
+          containers[index % 3].appendChild(img);
+        });
       })
+      .catch(error => console.error('Error fetching images:', error));
   </script>
 </body>
 
