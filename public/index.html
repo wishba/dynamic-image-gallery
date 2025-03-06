@@ -36,7 +36,8 @@
   </div>
 
   <script>
-    fetch('data.json')
+    fetch('https://script.googleusercontent.com/macros/echo?user_content_key=ERcuOnq5YwLQ4usizOggd6WxLs8cJDKbQMsVfCaIkq3kT6fuDXMSITedjFzIyg5JU5WtIDoKPe73TWYle4eWxgxMGCvAek0Wm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnEd5EOnhfZ7adyvsd4EGQ9PVBK6CBxUdSAUKIZqmOAr6-GWAR9cvy6nVqQozt8CMhd9nPEyv6ImGahQSkmV7nBLMJHFq7GgJuA&lib=MwBGkWdifjhAqX0UzQHI717ZroLrSbNd7')
+      // fetch('data.json')
       .then(response => response.json())
       .then(data => {
         const containers = [
@@ -47,7 +48,8 @@
 
         data.forEach((image, index) => {
           const img = document.createElement('img');
-          img.src = `images/${image.url}`;
+          img.src = image.url;
+          // img.src = `images/${image.url}`;
           containers[index % 3].appendChild(img);
         });
       })
