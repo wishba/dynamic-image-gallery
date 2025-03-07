@@ -1,27 +1,45 @@
-const express = require('express');
-const path = require('path');
-const app = express();
-const PORT = 3000;
+'use strict';
 
-// Middleware to set CORS headers
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // Allow all origins for testing purposes
-    // res.header('Access-Control-Allow-Origin', 'http://your-domain.com'); // Replace with your domain for production
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
-    next();
+const Hapi = require('@hapi/hapi');
+
+const init = async () => {
+
+  const server = Hapi.server({
+    port: 3000,
+    host: 'localhost'
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/',
+    handler: (request, h) => {
+
+      return 'Hello World!';
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/api/data',
+    handler: async (request, h) => {
+      return fetch('https://script.googleusercontent.com/macros/echo?user_content_key=0q21vmdOgUpf6oXzuIdcLcK-vQ3_fta_M_mnB-2b1Cbl4LriKfuBGbB0BFO4J0MHqtlCkdaKHooPGApgt2YKxsark6przTtIm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnEd5EOnhfZ7adyvsd4EGQ9PVBK6CBxUdSAUKIZqmOAr6-GWAR9cvy6nVqQozt8CMhd9nPEyv6ImGahQSkmV7nBLMJHFq7GgJuA&lib=MwBGkWdifjhAqX0UzQHI717ZroLrSbNd7')
+        .then(response => response.json())
+        .then(data => h.response(data).code(200))
+        .catch(err => {
+          console.error(err);
+          return h.response({ error: 'Unable to fetch data' }).code(500);
+        });
+    }
+  });
+
+  await server.start();
+  console.log('Server running on %s', server.info.uri);
+};
+
+process.on('unhandledRejection', (err) => {
+
+  console.log(err);
+  process.exit(1);
 });
 
-app.use(express.static('public'));
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.get('/data.json', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'data.json'));
-});
-
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+init();

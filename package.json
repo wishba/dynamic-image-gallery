@@ -1,5 +1,5 @@
 {
-  "name": "express-html-hello-world",
+  "name": "hapi-hello-world",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.2"
+    "@hapi/hapi": "^21.4.0",
+    "@hapi/inert": "^7.1.0"
   }
 }
