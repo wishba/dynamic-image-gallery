@@ -20,6 +20,25 @@
     border: 1px solid black;
   }
 
+  body {
+    background-color: #f7d6a1;
+  }
+
+  .body__wrapper {
+    max-width: fit-content;
+    margin: auto;
+    padding: 0 1rem;
+  }
+
+  .body__wrapper--glass {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
   header {
     width: var(--body-width);
     margin: auto;
@@ -29,7 +48,7 @@
     display: flex;
     gap: 1rem;
     width: fit-content;
-    margin: auto;
+    margin: 1rem auto;
   }
 
   .main__image {
@@ -42,18 +61,20 @@
 </style>
 
 <body>
-  <header>
-    <h1>Wisnu Bayu’s Graphic Design Portfolio</h1>
-    <h2><a href="https://mail.google.com/mail/u/0/?to=wisnubayu928@gmail.com&fs=1&tf=cm" target="_blank"
-        rel="noopener noreferrer">Contact: wisnubayu928@gmail.com</a></h2>
-    <hr>
-  </header>
+  <div class="body__wrapper body__wrapper--glass">
+    <header>
+      <h1>Wisnu Bayu’s Graphic Design Portfolio</h1>
+      <h2><a href="https://mail.google.com/mail/u/0/?to=wisnubayu928@gmail.com&fs=1&tf=cm" target="_blank"
+          rel="noopener noreferrer">Contact: wisnubayu928@gmail.com</a></h2>
+      <hr>
+    </header>
 
-  <main>
-    <div id="main-image-1" class="main__image"></div>
-    <div id="main-image-2" class="main__image"></div>
-    <div id="main-image-3" class="main__image"></div>
-  </main>
+    <main>
+      <div id="main-image-1" class="main__image"></div>
+      <div id="main-image-2" class="main__image"></div>
+      <div id="main-image-3" class="main__image"></div>
+    </main>
+  </div>
 
   <script>
     const mainElement = document.querySelector('main');
