@@ -25,19 +25,19 @@
     margin: auto;
   }
 
-  .image-container {
+  main {
+    display: flex;
+    gap: 1rem;
+    width: fit-content;
+    margin: auto;
+  }
+
+  .main__image {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
     align-items: start;
     flex-direction: column;
-  }
-
-  .container-wrapper {
-    display: flex;
-    gap: 1rem;
-    width: fit-content;
-    margin: auto;
   }
 </style>
 
@@ -49,14 +49,14 @@
     <hr>
   </header>
 
-  <main class="container-wrapper">
-    <div id="image-container-1" class="image-container"></div>
-    <div id="image-container-2" class="image-container"></div>
-    <div id="image-container-3" class="image-container"></div>
+  <main>
+    <div id="main-image-1" class="main__image"></div>
+    <div id="main-image-2" class="main__image"></div>
+    <div id="main-image-3" class="main__image"></div>
   </main>
 
   <script>
-    const mainElement = document.querySelector('main.container-wrapper');
+    const mainElement = document.querySelector('main');
 
     const loadingElement = document.createElement('div');
     loadingElement.textContent = 'Loading...';
@@ -66,9 +66,9 @@
       .then(response => response.json())
       .then(data => {
         const containers = [
-          document.getElementById('image-container-1'),
-          document.getElementById('image-container-2'),
-          document.getElementById('image-container-3')
+          document.getElementById('main-image-1'),
+          document.getElementById('main-image-2'),
+          document.getElementById('main-image-3')
         ];
 
         data.forEach((image, index) => {
