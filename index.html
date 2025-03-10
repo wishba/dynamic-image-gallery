@@ -56,6 +56,12 @@
   </main>
 
   <script>
+    const mainElement = document.querySelector('main.container-wrapper');
+
+    const loadingElement = document.createElement('div');
+    loadingElement.textContent = 'Loading...';
+    mainElement.appendChild(loadingElement);
+
     fetch('https://script.google.com/macros/s/AKfycbwN1DLxh6NRMtMsPpUAh_Tf0W2s2kAjs5nGK1j3wjJeQX-IzFUNqi7lD98tN2JTGu4v/exec')
       .then(response => response.json())
       .then(data => {
@@ -70,8 +76,13 @@
           img.src = `https://drive.google.com/thumbnail?id=${image.id}`;
           containers[index % 3].appendChild(img);
         });
+
+        mainElement.removeChild(loadingElement);
       })
-      .catch(error => console.error('Error fetching images:', error));
+      .catch(error => {
+        console.error('Error fetching images:', error);
+        loadingElement.textContent = 'Failed to load images.';
+      });
   </script>
 </body>
 
