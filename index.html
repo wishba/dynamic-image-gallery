@@ -8,12 +8,21 @@
 </head>
 
 <style>
+  :root {
+    --image-width: min(calc((100vw / 3) - 2rem), 20rem);
+    --body-width: calc(2.375rem + (3 * var(--image-width)));
+  }
+
   img {
-    width: calc((100vw / 3) - 2rem);
-    max-width: 20rem;
+    width: var(--image-width);
     height: auto;
     border-radius: 1rem;
     border: 1px solid black;
+  }
+
+  header {
+    width: var(--body-width);
+    margin: auto;
   }
 
   .image-container {
@@ -33,18 +42,23 @@
 </style>
 
 <body>
-  <div class="container-wrapper">
+  <header>
+    <h1>Wisnu Bayu’s Graphic Design Portfolio</h1>
+    <h2><a href="https://mail.google.com/mail/u/0/?to=wisnubayu928@gmail.com" target="_blank"
+        rel="noopener noreferrer">Contact: wisnubayu928@gmail.com</a></h2>
+    <hr>
+  </header>
+
+  <main class="container-wrapper">
     <div id="image-container-1" class="image-container"></div>
     <div id="image-container-2" class="image-container"></div>
     <div id="image-container-3" class="image-container"></div>
-  </div>
+  </main>
 
   <script>
     fetch('https://script.google.com/macros/s/AKfycbwN1DLxh6NRMtMsPpUAh_Tf0W2s2kAjs5nGK1j3wjJeQX-IzFUNqi7lD98tN2JTGu4v/exec')
       .then(response => response.json())
       .then(data => {
-        console.log(data);
-
         const containers = [
           document.getElementById('image-container-1'),
           document.getElementById('image-container-2'),
