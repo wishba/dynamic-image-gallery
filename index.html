@@ -14,7 +14,8 @@
   }
 
   img {
-    width: var(--image-width);
+    width: 100%;
+    margin-bottom: 1rem;
     height: auto;
     border-radius: 1rem;
     border: 1px solid black;
@@ -50,19 +51,26 @@
     margin: auto;
   }
 
-  main {
-    display: flex;
-    gap: 1rem;
-    width: fit-content;
-    margin: 1rem auto;
-  }
+  @media (min-width:600px) {
+    img {
+      width: var(--image-width);
+      margin: 0;
+    }
 
-  .main__image {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    align-items: start;
-    flex-direction: column;
+    main {
+      display: flex;
+      gap: 1rem;
+      width: fit-content;
+      margin: 1rem auto;
+    }
+
+    .main__image {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: start;
+      flex-direction: column;
+    }
   }
 </style>
 
